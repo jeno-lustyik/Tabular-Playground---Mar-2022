@@ -20,6 +20,8 @@ df_train['dates'] = df_train['time'].apply(lambda row: row[:-9].split('-')[:3])
 df_train['dates'] = df_train['dates'].apply(lambda row: datetime(int(row[0]), int(row[1]), int(row[2])))
 df_train['weekdays'] = df_train['dates'].apply(lambda row: row.weekday())
 
+
+
 st.title('Tabular Playground Series - Mar 2022')
 st.subheader('Exploratory Data Analysis')
 
@@ -36,8 +38,10 @@ st.text(
     northbound and southbound traffic is the most frequent.
 """)
 
+df_train_sort_direction = df_train.sort_values(by='congestion')
+
 fig_directions = plt.figure(figsize=(10, 4))
-fig = sns.barplot(x='direction', y='congestion', data=df_train, palette='plasma')
+fig = sns.barplot(x='direction', y='congestion', data=df_train_sort_direction, palette='plasma')
 fig.set_xlabel('Directions', fontsize=15)
 fig.set_ylabel('Congestion', fontsize=15)
 fig.set_title('Direction Vs Congestion', fontsize=20)
