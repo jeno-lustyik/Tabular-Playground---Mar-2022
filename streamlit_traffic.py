@@ -97,3 +97,11 @@ fig.set_xlabel('Hours', fontsize=15)
 fig.set_ylabel('Congestion', fontsize=15)
 fig.set_title('Congestion on weekends', fontsize=20)
 st.pyplot(fig_directions)
+
+
+st.subheader('Data Enhancement')
+st.text(
+    """We decided to create a new column out of the directions and x, y coordinates.
+    This new feature represents each road from the dataset, and makes it easier for our model
+    to predict values from the set.
+    """)
