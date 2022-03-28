@@ -38,10 +38,10 @@ st.text(
     northbound and southbound traffic is the most frequent.
 """)
 
-df_train_sort_direction = df_train.sort_values(by='congestion')
+# df_train_sort_direction = df_train.sort_values(by='congestion')
 
 fig_directions = plt.figure(figsize=(10, 4))
-fig = sns.barplot(x='direction', y='congestion', data=df_train_sort_direction, palette='plasma')
+fig = sns.barplot(x='direction', y='congestion', data=df_train, palette='plasma')
 fig.set_xlabel('Directions', fontsize=15)
 fig.set_ylabel('Congestion', fontsize=15)
 fig.set_title('Direction Vs Congestion', fontsize=20)
@@ -112,3 +112,13 @@ df_enh.insert(2, 'route', route_train)
 df_enh = df_enh.drop(['time', 'x', 'y', 'direction', 'row_id'], axis=1)
 st.dataframe(df_enh)
 
+st.text(
+    """For closing out, we created a graph to showcase the models scores.""")
+df_results = pd.read_csv('results.csv')
+fig_results = plt.figure(figsize=(10, 4))
+fig = sns.barplot(x=df_results['Model'], y='MSE', data = df_results, palette='plasma')
+fig.set_xlabel('Models', fontsize=15)
+fig.set_xticklabels(fig.get_xticklabels(), rotation=30)
+fig.set_ylabel('Mean Squared Error', fontsize=15)
+fig.set_title('Model Scores', fontsize=20)
+st.pyplot(fig_results)
