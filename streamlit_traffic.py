@@ -105,3 +105,10 @@ st.text(
     This new feature represents each road from the dataset, and makes it easier for our model
     to predict values from the set.
     """)
+
+df_enh = pd.read_csv('training.csv')
+route_train = df_enh['x'].astype(str) + df_enh['y'].astype(str) + df_enh['direction']
+df_enh.insert(2, 'route', route_train)
+df_enh = df_enh.drop(['time', 'x', 'y', 'direction', 'row_id'], axis=1)
+st.dataframe(df_enh)
+
